@@ -8,7 +8,7 @@ import { SectionLogin } from "./style";
 export const Login = () => {
   return (
     <SectionLogin>
-      <Container className="containerMain">
+      <Container>
         <Main>
           <Header />
           <Form>
