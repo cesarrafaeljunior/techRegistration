@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
 import { Button, Input, Label } from "../../modules/common/components";
 import { Container } from "../../modules/Components/Container";
 import { FormStyled } from "../../modules/Components/Form/style";
@@ -8,8 +6,6 @@ import { Main } from "../../modules/Components/Main";
 import { SectionLogin, StyledLink as Link } from "./style";
 
 export const Login = () => {
-  const navigate = useNavigate();
-
   return (
     <SectionLogin>
       <Container>
@@ -38,8 +34,8 @@ export const Login = () => {
               <span>Ainda não possui uma conta?</span>
               <Link
                 width="100%"
-                backColor="grey1"
-                borderColor="grey1"
+                backgroundcolor="grey1"
+                bordercolor="grey1"
                 hover="grey2"
                 to="/register"
               >

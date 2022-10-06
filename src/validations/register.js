@@ -20,8 +20,8 @@ export const schema = yup.object({
     .required("O campo de senha é obrigatório"),
   confirmPassword: yup
     .string()
-    .oneOf(["password"], "")
-    .required("As senhas nao se condizem"),
+    .oneOf([yup.ref("password")], "As senhas não se condizem")
+    .required("O campo de confirmação de senha é obrigatório"),
   bio: yup
     .string()
     .max(200, "A biografia deve contar no máximo 200 caracteres")
