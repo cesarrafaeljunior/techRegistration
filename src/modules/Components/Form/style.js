@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledForm = styled.form`
+export const FormStyled = styled.form`
   width: 100%;
   max-width: 369px;
 

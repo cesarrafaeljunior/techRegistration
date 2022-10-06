@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button, Input, Label } from "../../modules/common/components";
 import { Container } from "../../modules/Components/Container";
-import { Form } from "../../modules/Components/Form";
+import { FormStyled } from "../../modules/Components/Form/style";
 import { Header } from "../../modules/Components/Header";
 import { Main } from "../../modules/Components/Main";
 import { SectionLogin } from "./style";
@@ -14,7 +14,7 @@ export const Login = () => {
       <Container>
         <Main>
           <Header />
-          <Form>
+          <FormStyled>
             <p>Login</p>
             <div className="boxLabel">
               <Label>Email</Label>
@@ -45,7 +45,7 @@ export const Login = () => {
                 Cadastre-se
               </Button>
             </div>
-          </Form>
+          </FormStyled>
         </Main>
       </Container>
     </SectionLogin>
