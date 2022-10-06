@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
+
 import { Button, Input, Label } from "../../modules/common/components";
 import { Container } from "../../modules/Components/Container";
 import { FormStyled } from "../../modules/Components/Form/style";
 import { Header } from "../../modules/Components/Header";
 import { Main } from "../../modules/Components/Main";
-import { SectionLogin } from "./style";
+import { SectionLogin, StyledLink as Link } from "./style";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -35,15 +36,15 @@ export const Login = () => {
                 Entrar
               </Button>
               <span>Ainda não possui uma conta?</span>
-              <Button
-                onClick={() => navigate("/register")}
+              <Link
                 width="100%"
                 backColor="grey1"
                 borderColor="grey1"
                 hover="grey2"
+                to="/register"
               >
                 Cadastre-se
-              </Button>
+              </Link>
             </div>
           </FormStyled>
         </Main>

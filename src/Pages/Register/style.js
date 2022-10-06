@@ -41,4 +41,7 @@ export const SectionRegister = styled.section`
     flex-direction: column;
     gap: 18px;
   }
+  .errorMessage {
+    color: var(--feedBackNegative);
+  }
 `;
