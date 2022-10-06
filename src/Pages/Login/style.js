@@ -28,6 +28,8 @@ export const SectionLogin = styled.section`
       font-weight: var(--fontWeiBold);
       font-size: 11px;
 
+      margin-top: 18px;
+
       text-align: center;
     }
   }
