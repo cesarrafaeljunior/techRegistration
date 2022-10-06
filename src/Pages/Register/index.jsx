@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../../validations/register";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 import { Api } from "../../Services";
 
@@ -17,41 +17,51 @@ import { FormStyled as Form } from "../../modules/Components/Form/style";
 import { Header } from "../../modules/Components/Header";
 import { Main } from "../../modules/Components/Main";
 import { SectionRegister } from "./style";
-import { StyledLink } from "../Login/style";
+import { StyledLink as Link } from "../Login/style";
+import { schema } from "../../validations/register";
 
 export const Register = () => {
-  //Navigate => Utilizado para mudar a rota
-  const navigate = useNavigate();
-
   const {
-    register, //Função que monta o objeto com base em seu name
-    handleSubmit, //Função chamada no onSubmit do form recebendo uma callBack
-    formState: { errors }, // Desestruturação para captar as mensagens de erro
-    reset, //Função para resetar os campos do formulário
+    register,
+    handleSubmit,
+    formState: { errors },
+
+    reset,
   } = useForm({
-    resolver: yupResolver(schema), //Validador de campos
+    resolver: yupResolver(schema),
   });
-  //Função acionada pelo onSubmit do formulário
+
   const getValuesForm = (data) => {
-    reset(); //Chamando a função que reseta os campos
-    // Api.post("/users", data)
-    //   .then(({ data }) => console.log(data))
-    //   .catch((err) => console.log(err));
+    reset();
+    Api.post("/users", data)
+      .then(() => {
+        toast.success("Usuario cadastrado com sucesso!", {
+          autoClose: 1000,
+          theme: "dark",
+        });
+      })
+      .catch(({ response }) => {
+        toast.error(`${response.data.message}`, {
+          autoClose: 1000,
+          theme: "dark",
+        });
+      });
   };
 
   return (
     <SectionRegister>
+      <ToastContainer />
       <Container>
         <Main>
           <Header>
-            <StyledLink
-              width="80px"
-              backColor="grey3"
-              hover="grey2"
+            <Link
               to="/login"
+              width="80px"
+              hover="grey2"
+              backgroundcolor="grey3"
             >
               Voltar
-            </StyledLink>
+            </Link>
           </Header>
           <Form onSubmit={handleSubmit(getValuesForm)}>
             <p>Crie sua conta</p>
@@ -63,6 +73,7 @@ export const Register = () => {
                 placeholder="Digite aqui seu nome"
                 {...register("name")}
               />
+
               <p className="errorMessage">{errors.name?.message}</p>
             </div>
             <div className="boxLabel">
@@ -127,8 +138,8 @@ export const Register = () => {
             <p className="errorMessage">{errors.course_module?.message}</p>
             <Button
               type="submit"
-              borderColor="colorPrimaryNegative"
-              backColor="colorPrimaryNegative"
+              bordercolor="colorPrimaryNegative"
+              backgroundcolor="colorPrimaryNegative"
               hover="colorPrimaryFocus"
             >
               Cadastrar
