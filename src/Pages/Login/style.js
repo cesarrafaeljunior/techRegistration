@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const SectionLogin = styled.section`
@@ -32,5 +33,30 @@ export const SectionLogin = styled.section`
 
       text-align: center;
     }
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: ${({ width }) => `${width}`};
+  height: 48px;
+
+  background-color: ${({ backColor }) => `var(--${backColor})`};
+
+  border: solid 2px ${({ borderColor }) => `var(--${borderColor})`};
+
+  border-radius: 3px;
+
+  color: var(--white);
+
+  font-size: var(--fontSize14);
+  font-weight: 600;
+
+  &:hover {
+    background-color: ${({ hover }) => `var(--${hover})`};
+    border: solid 2px ${({ hover }) => `var(--${hover})`};
   }
 `;

@@ -4,11 +4,13 @@ import { Dashboard } from "../Pages/Dashboard";
 import { Login } from "../Pages/Login";
 import { Register } from "../Pages/Register";
 
-export const RoutesMain = () => (
-  <Routes>
-    <Route path="/login" element={<Login />} />
-    <Route path="*" element={<Navigate to="login" />} />
-    <Route path="/register" element={<Register />} />
-    <Route path="/dashboard" element={<Dashboard />} />
-  </Routes>
-);
+export const RoutesMain = () => {
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="*" element={<Navigate to="login" />} />
+      <Route path="/register" element={<Register />} />
+      {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+    </Routes>
+  );
+};
