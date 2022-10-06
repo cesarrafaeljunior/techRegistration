@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Button, Input, Label } from "../../modules/common/components";
 import { Container } from "../../modules/Components/Container";
 import { Form } from "../../modules/Components/Form";
@@ -6,12 +7,19 @@ import { Main } from "../../modules/Components/Main";
 import { SectionRegister } from "./style";
 
 export const Register = () => {
+  const navigate = useNavigate();
+
   return (
     <SectionRegister>
       <Container>
         <Main>
           <Header>
-            <Button width="80px" backColor="grey3" hover="grey2">
+            <Button
+              onClick={() => navigate("/")}
+              width="80px"
+              backColor="grey3"
+              hover="grey2"
+            >
               Voltar
             </Button>
           </Header>
