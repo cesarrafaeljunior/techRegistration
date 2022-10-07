@@ -20,12 +20,22 @@ export const SectionRegister = styled.section`
     text-align: center;
   }
   .boxLabel {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
 
     font-size: var(--fontSize14);
     font-weight: var(--fontWeiRegular);
+    .eye {
+      position: absolute;
+      top: 1.9em;
+      right: 2em;
+      width: 25px;
+      height: 40px;
+      cursor: pointer;
+      color: var(--grey1);
+    }
   }
   span {
     color: var(--grey1);

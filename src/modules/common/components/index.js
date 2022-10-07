@@ -4,9 +4,9 @@ const Button = styled.button`
   width: ${({ width }) => `${width}`};
   height: 48px;
 
-  background-color: ${({ backColor }) => `var(--${backColor})`};
+  background-color: ${({ backgroundcolor }) => `var(--${backgroundcolor})`};
 
-  border: solid 2px ${({ borderColor }) => `var(--${borderColor})`};
+  border: solid 2px ${({ bordercolor }) => `var(--${bordercolor})`};
 
   border-radius: 3px;
 

@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import { BsFillEyeFill } from "react-icons/bs";
+import { BsEyeSlashFill } from "react-icons/bs";
 
 import { Api } from "../../Services";
 
@@ -19,8 +21,13 @@ import { Main } from "../../modules/Components/Main";
 import { SectionRegister } from "./style";
 import { StyledLink as Link } from "../Login/style";
 import { schema } from "../../validations/register";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export const Register = () => {
+  const [isOpenEyes, setIsOpenEyes] = useState(false);
+  const [inputView, setInputView] = useState("password");
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -39,6 +46,7 @@ export const Register = () => {
           autoClose: 1000,
           theme: "dark",
         });
+        navigate("/login");
       })
       .catch(({ response }) => {
         toast.error(`${response.data.message}`, {
@@ -88,11 +96,28 @@ export const Register = () => {
             <div className="boxLabel">
               <Label>Senha</Label>
               <Input
-                type="password"
+                type={inputView}
                 placeholder="Digite aqui sua senha"
                 {...register("password")}
               />
               <p className="errorMessage">{errors.password?.message}</p>
+              {isOpenEyes == false ? (
+                <BsEyeSlashFill
+                  onClick={() => {
+                    setIsOpenEyes(!isOpenEyes);
+                    setInputView("text");
+                  }}
+                  className="eye"
+                />
+              ) : (
+                <BsFillEyeFill
+                  onClick={() => {
+                    setIsOpenEyes(!isOpenEyes);
+                    setInputView("password");
+                  }}
+                  className="eye"
+                />
+              )}
             </div>
             <div className="boxLabel">
               <Label>Confirmar senha</Label>
