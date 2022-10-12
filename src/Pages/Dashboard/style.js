@@ -38,30 +38,5 @@ export const SectionDashboard = styled.section`
         gap: 18em;
       }
     }
-    .Box__App {
-      display: flex;
-      flex-direction: column;
-      gap: 23px;
-      width: 100%;
-      padding: 0 15px;
-      margin-top: 35px;
-      color: white;
-      font-size: 18px;
-      font-weight: var(--fontWeiBold);
-      display: none;
-      p ~ p {
-        font-size: var(--fontSize16);
-        font-weight: var(--fontWeiRegular);
-      }
-      max-width: 700px;
-      @media (min-width: 440px) {
-        display: flex;
-        align-items: center;
-        text-align: center;
-      }
-      @media (min-width: 700px) {
-        align-items: flex-start;
-      }
-    }
   }
 `;

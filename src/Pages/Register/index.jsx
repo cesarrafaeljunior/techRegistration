@@ -1,11 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import { BsFillEyeFill } from "react-icons/bs";
-import { BsEyeSlashFill } from "react-icons/bs";
-
-import { Api } from "../../Services";
+import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
 import {
   Button,
@@ -21,44 +17,25 @@ import { Main } from "../../modules/Components/Main";
 import { SectionRegister } from "./style";
 import { StyledLink as Link } from "../Login/style";
 import { schema } from "../../validations/register";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+
+import { useContext, useState } from "react";
+import { userContext } from "../../contexts/userContext";
 
 export const Register = () => {
+  const { registerUser } = useContext(userContext);
   const [isOpenEyes, setIsOpenEyes] = useState(false);
   const [inputView, setInputView] = useState("password");
-  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-
-    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const getValuesForm = (data) => {
-    reset();
-    Api.post("/users", data)
-      .then(() => {
-        toast.success("Usuario cadastrado com sucesso!", {
-          autoClose: 1000,
-          theme: "dark",
-        });
-        navigate("/login");
-      })
-      .catch(({ response }) => {
-        toast.error(`${response.data.message}`, {
-          autoClose: 1000,
-          theme: "dark",
-        });
-      });
-  };
-
   return (
     <SectionRegister>
-      <ToastContainer />
       <Container>
         <Main>
           <Header>
@@ -71,7 +48,7 @@ export const Register = () => {
               Voltar
             </Link>
           </Header>
-          <Form onSubmit={handleSubmit(getValuesForm)}>
+          <Form onSubmit={handleSubmit(registerUser)}>
             <p>Crie sua conta</p>
             <span>Rapido e grátis, vamos nessa</span>
             <div className="boxLabel">
