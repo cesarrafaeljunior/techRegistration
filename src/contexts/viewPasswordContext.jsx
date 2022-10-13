@@ -1,9 +1,8 @@
 import { createContext, useState } from "react";
-import { Outlet } from "react-router-dom";
 
 export const passwordViewContext = createContext({});
 
-export const PasswordView = () => {
+export const PasswordView = ({ children }) => {
   const [isOpenEyes, setIsOpenEyes] = useState(false);
   const [inputView, setInputView] = useState("password");
 
@@ -21,7 +20,7 @@ export const PasswordView = () => {
     <passwordViewContext.Provider
       value={{ isOpenEyes, inputView, openEyes, closeEyes }}
     >
-      <Outlet />
+      {children}
     </passwordViewContext.Provider>
   );
 };

@@ -1,6 +1,7 @@
 import { UserProvider } from "../contexts/userContext";
 import { RoutesMain } from "../routes";
 import { ToastContainer } from "react-toastify";
+import { PasswordView } from "../contexts/viewPasswordContext";
 
 function App() {
   return (
@@ -8,7 +9,9 @@ function App() {
       <ToastContainer />
 
       <UserProvider>
-        <RoutesMain />
+        <PasswordView>
+          <RoutesMain />
+        </PasswordView>
       </UserProvider>
     </>
   );
