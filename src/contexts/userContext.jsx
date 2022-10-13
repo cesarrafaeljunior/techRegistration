@@ -6,6 +6,8 @@ import { Api } from "../Services";
 export const userContext = createContext({});
 
 export const UserProvider = ({ children }) => {
+  const [isReload, setReloado] = useState(false);
+  const [isModal, setIsModal] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -28,7 +30,7 @@ export const UserProvider = ({ children }) => {
     }
 
     loading();
-  }, []);
+  }, [isReload]);
 
   async function registerUser(data) {
     try {
@@ -76,9 +78,55 @@ export const UserProvider = ({ children }) => {
     }
   }
 
+  async function addTechs(body) {
+    try {
+      await Api.post("/users/techs", body);
+      toast.success("Tecnologia adicionada!", {
+        autoClose: 1000,
+        theme: "dark",
+        position: "bottom-center",
+      });
+      setReloado(!isReload);
+      setIsModal(!isModal);
+    } catch (error) {
+      toast.error("Tecnologia já adicionada!", {
+        autoClose: 1000,
+        theme: "dark",
+        position: "bottom-center",
+      });
+    }
+  }
+
+  const deleteTech = async (id) => {
+    try {
+      toast.success("Tecnologia Deletada!", {
+        autoClose: 1000,
+        theme: "dark",
+        position: "bottom-center",
+      });
+      await Api.delete(`/users/techs/${id}`);
+      setReloado(!isReload);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const editTech = async (tech) => {};
+
   return (
     <userContext.Provider
-      value={{ registerUser, loginUser, user, loading, navigate }}
+      value={{
+        registerUser,
+        loginUser,
+        user,
+        loading,
+        navigate,
+        isModal,
+        setIsModal,
+        addTechs,
+        deleteTech,
+        editTech,
+      }}
     >
       {children}
     </userContext.Provider>

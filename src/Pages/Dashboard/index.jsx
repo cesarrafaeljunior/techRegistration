@@ -9,7 +9,6 @@ import { SectionDashboard } from "./style";
 export const Dashboard = () => {
   const { user } = useContext(userContext);
 
-  console.log(user);
   return (
     <SectionDashboard>
       <Header>

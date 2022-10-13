@@ -13,6 +13,10 @@ export const SectionTechs = styled.section`
 
   max-width: 700px;
 
+  h2 {
+    font-size: 16px;
+  }
+
   .box__addTech {
     width: 100%;
 
@@ -50,6 +54,7 @@ export const SectionTechs = styled.section`
     background-color: var(--grey4);
     padding: 12px;
     border-radius: 5px;
+    animation: listEntrance 0.2s;
     cursor: pointer;
     h2 {
       font-size: 15px;
@@ -65,6 +70,14 @@ export const SectionTechs = styled.section`
     }
     &:hover {
       background-color: var(--grey2);
+    }
+  }
+  @keyframes listEntrance {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
     }
   }
 `;
