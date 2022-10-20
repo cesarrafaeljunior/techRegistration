@@ -1,17 +1,27 @@
 import { createContext, useState } from "react";
+import { iChildrens } from "../modules/Components/Container";
 
-export const passwordViewContext = createContext({});
+interface iViewContext {
+  isOpenEyes: boolean;
+  inputView: string;
+  openEyes: () => void;
+  closeEyes: () => void;
+}
 
-export const PasswordView = ({ children }) => {
+export const passwordViewContext = createContext<iViewContext>(
+  {} as iViewContext
+);
+
+export const PasswordView = ({ children }: iChildrens) => {
   const [isOpenEyes, setIsOpenEyes] = useState(false);
   const [inputView, setInputView] = useState("password");
 
-  async function openEyes() {
+  async function openEyes(): Promise<void> {
     setIsOpenEyes(!isOpenEyes);
     setInputView("text");
   }
 
-  async function closeEyes() {
+  async function closeEyes(): Promise<void> {
     setIsOpenEyes(!isOpenEyes);
     setInputView("password");
   }

@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { HiX } from "react-icons/hi";
+import { iModal } from "..";
 import { userContext } from "../../../../contexts/userContext";
 
 import { TitleContainer } from "./style";
 
-export const TitleModal = ({ text }) => {
-  const { setIsModal, setIsModalEdit } = useContext(userContext);
+export const TitleModal = ({ text }: iModal) => {
+  const { setIsModal } = useContext(userContext);
 
   return (
     <TitleContainer>
@@ -13,7 +14,6 @@ export const TitleModal = ({ text }) => {
       <HiX
         onClick={() => {
           setIsModal(false);
-          setIsModalEdit(false);
         }}
         className="closeBtn"
       />

@@ -1,14 +1,51 @@
-import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, {
+  createContext,
+  Dispatch,
+  useEffect,
+  useState,
+  SetStateAction,
+} from "react";
+import { FieldValues } from "react-hook-form";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { iChildrens } from "../modules/Components/Container";
 import { Api } from "../Services";
 
-export const userContext = createContext({});
+export interface iTechs {
+  id: string;
+  title: string;
+  status: string;
+}
 
-export const UserProvider = ({ children }) => {
+export interface iUser {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  bio: string;
+  contact: string;
+  course_module: string;
+  techs: iTechs[];
+}
+
+export interface iUserContext {
+  registerUser: (data: FieldValues) => void;
+  loginUser: (data: FieldValues) => void;
+  user: iUser;
+  loading: boolean;
+  navigate: NavigateFunction;
+  isModal: boolean;
+  setIsModal: Dispatch<SetStateAction<boolean>>;
+  addTechs: (data: iTechs) => void;
+  deleteTech: (id: string) => void;
+}
+
+export const userContext = createContext<iUserContext>({} as iUserContext);
+
+export const UserProvider = ({ children }: iChildrens) => {
   const [isReload, setReloado] = useState(false);
   const [isModal, setIsModal] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<iUser>({} as iUser);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -32,7 +69,7 @@ export const UserProvider = ({ children }) => {
     loading();
   }, [isReload]);
 
-  async function registerUser(data) {
+  async function registerUser(data: FieldValues): Promise<void> {
     try {
       await Api.post("/users", data);
       toast.success("Usuario cadastrado com sucesso!", {
@@ -50,7 +87,7 @@ export const UserProvider = ({ children }) => {
     }
   }
 
-  async function loginUser(data) {
+  async function loginUser(data: FieldValues): Promise<void> {
     try {
       toast.success("Sessão Iniciada!", {
         autoClose: 1000,
@@ -78,7 +115,7 @@ export const UserProvider = ({ children }) => {
     }
   }
 
-  async function addTechs(body) {
+  async function addTechs(body: iTechs): Promise<void> {
     try {
       await Api.post("/users/techs", body);
       toast.success("Tecnologia adicionada!", {
@@ -97,7 +134,7 @@ export const UserProvider = ({ children }) => {
     }
   }
 
-  const deleteTech = async (id) => {
+  const deleteTech = async (id: string): Promise<void> => {
     try {
       toast.success("Tecnologia Deletada!", {
         autoClose: 1000,
@@ -111,8 +148,6 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const editTech = async (tech) => {};
-
   return (
     <userContext.Provider
       value={{
@@ -125,7 +160,6 @@ export const UserProvider = ({ children }) => {
         setIsModal,
         addTechs,
         deleteTech,
-        editTech,
       }}
     >
       {children}

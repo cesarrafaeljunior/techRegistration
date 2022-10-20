@@ -11,7 +11,7 @@ import { Main } from "../../modules/Components/Main";
 import { SectionLogin, StyledLink as Link } from "./style";
 import { schema } from "../../validations/login";
 
-import { userContext } from "../../contexts/userContext";
+import { iUser, userContext } from "../../contexts/userContext";
 import { passwordViewContext } from "../../contexts/viewPasswordContext";
 
 export const Login = () => {
@@ -34,7 +34,7 @@ export const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iUser>({
     resolver: yupResolver(schema),
   });
 

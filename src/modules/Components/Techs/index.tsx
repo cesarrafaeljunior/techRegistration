@@ -2,25 +2,17 @@ import { useContext } from "react";
 import { FaTrash } from "react-icons/fa";
 import { SectionTechs } from "./style";
 
-import { Modal } from "../Modal";
-
-import { userContext } from "../../../contexts/userContext";
+import { iTechs, userContext } from "../../../contexts/userContext";
 import { Button, Input, Label, Select } from "../../common/components";
 import { FormStyled as Form } from "../Form/style";
 import { useForm } from "react-hook-form";
+import { Modal } from "../Modal";
 
 export const Techs = () => {
-  const {
-    isModal,
-    setIsModal,
-    addTechs,
-    user,
-    deleteTech,
-    editTech,
-    setIsModalEdit,
-    isModalEdit,
-  } = useContext(userContext);
-  const { register, handleSubmit } = useForm();
+  const { isModal, setIsModal, addTechs, user, deleteTech } =
+    useContext(userContext);
+
+  const { register, handleSubmit } = useForm<iTechs>();
 
   return (
     <SectionTechs>

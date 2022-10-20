@@ -19,7 +19,7 @@ import { StyledLink as Link } from "../Login/style";
 import { schema } from "../../validations/register";
 
 import { useContext, useState } from "react";
-import { userContext } from "../../contexts/userContext";
+import { iUser, userContext } from "../../contexts/userContext";
 
 export const Register = () => {
   const { registerUser } = useContext(userContext);
@@ -30,7 +30,7 @@ export const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iUser>({
     resolver: yupResolver(schema),
   });
 

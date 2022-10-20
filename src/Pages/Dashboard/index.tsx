@@ -31,7 +31,7 @@ export const Dashboard = () => {
           <h2>Olá, {user.name}</h2>
           <span>{user.course_module}</span>
         </div>
-        <Techs className="Box__App" />
+        <Techs />
       </Main>
     </SectionDashboard>
   );

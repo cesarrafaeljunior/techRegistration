@@ -1,6 +1,13 @@
 import styled from "styled-components";
 
-const Button = styled.button`
+export interface iComponentsProps {
+  width?: string | undefined;
+  backgroundcolor: string | undefined;
+  bordercolor?: string | undefined;
+  hover: string | undefined;
+}
+
+const Button = styled.button<iComponentsProps>`
   width: ${({ width }) => `${width}`};
   height: 48px;
 

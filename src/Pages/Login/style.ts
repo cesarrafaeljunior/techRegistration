@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { iComponentsProps } from "../../modules/common/components";
 
 export const SectionLogin = styled.section`
   p {
@@ -50,7 +51,7 @@ export const SectionLogin = styled.section`
   }
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)<iComponentsProps>`
   display: flex;
   align-items: center;
   justify-content: center;
