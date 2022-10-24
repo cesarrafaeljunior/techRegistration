@@ -13,8 +13,8 @@ export const passwordViewContext = createContext<iViewContext>(
 );
 
 export const PasswordView = ({ children }: iChildrens) => {
-  const [isOpenEyes, setIsOpenEyes] = useState(false);
-  const [inputView, setInputView] = useState("password");
+  const [isOpenEyes, setIsOpenEyes] = useState<boolean>(false);
+  const [inputView, setInputView] = useState<string>("password");
 
   async function openEyes(): Promise<void> {
     setIsOpenEyes(!isOpenEyes);

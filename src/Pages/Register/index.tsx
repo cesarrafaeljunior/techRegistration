@@ -23,8 +23,8 @@ import { iUser, userContext } from "../../contexts/userContext";
 
 export const Register = () => {
   const { registerUser } = useContext(userContext);
-  const [isOpenEyes, setIsOpenEyes] = useState(false);
-  const [inputView, setInputView] = useState("password");
+  const [isOpenEyes, setIsOpenEyes] = useState<boolean>(false);
+  const [inputView, setInputView] = useState<string>("password");
 
   const {
     register,

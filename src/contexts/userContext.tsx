@@ -43,10 +43,10 @@ export interface iUserContext {
 export const userContext = createContext<iUserContext>({} as iUserContext);
 
 export const UserProvider = ({ children }: iChildrens) => {
-  const [isReload, setReloado] = useState(false);
-  const [isModal, setIsModal] = useState(false);
+  const [isReload, setReloado] = useState<boolean>(false);
+  const [isModal, setIsModal] = useState<boolean>(false);
   const [user, setUser] = useState<iUser>({} as iUser);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -104,7 +104,6 @@ export const UserProvider = ({ children }: iChildrens) => {
 
       localStorage.clear();
       localStorage.setItem("@KenzieHub:token", token);
-
       navigate(`/dashboard`, { replace: true });
     } catch (error) {
       toast.error(`${error}`, {
